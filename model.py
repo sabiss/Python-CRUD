@@ -191,9 +191,9 @@ class Funcionario:
     def __str__(self):
         return f"========= DADOS =========\nNome: {self.nome}\nMatrícula: {self.matricula}\n{self.endereco}Salário: R${self.salario}\nSexo: {self.sexo}\nCPF: {self.cpf}\nCadeirante: {self.cadeirante}\n===================\n"
 #======================== FORCA ========================
-palavraOculta = ""
-palavraComLetraRevelada = ""
-contador = 0
+palavraOculta = "";
+palavraComLetraRevelada = "";
+contador = 0;
 class Jogador:
     def __init__(self, nome, tentativas = 4):
         self.nome = nome
