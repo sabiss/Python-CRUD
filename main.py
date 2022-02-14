@@ -53,7 +53,7 @@ while(acao != 0):
         if retorno == True:
             print("Adicionado com sucesso!")
         else:
-            print("Erro")
+            print("Erro, cpf ou matrícula já existente")
 
     elif acao == EXCLUIR_FUNCIONARIO:
         dado = input("\nDigite a matrícula ou CPF do funcionário a ser excluído: ")
@@ -160,4 +160,110 @@ while(acao != 0):
         retorno = empresa.showFuncionarios()
         for funcionario in retorno:
             print(funcionario)
+    elif acao == LISTAR_FUNCIONARIOS_POR_CIDADE:
+        cidade = input("Informe a cidade para filtrar os funcionários: ")
+        retorno = empresa.showFuncionarios(LISTAR_FUNCIONARIOS_POR_CIDADE, cidade)
+        if retorno == False:
+            print("Erro")
+        else:
+            for funcionario in retorno:
+                print(funcionario)
+    elif acao == LISTAR_FUNCIONARIOS_POR_ESTADO:
+        estado = input("Informe o estado para filtrar os funcionários: ")
+        retorno = empresa.showFuncionarios(LISTAR_FUNCIONARIOS_POR_ESTADO, estado)
+        if retorno == False:
+            print("Erro")
+        else:
+            for funcionario in retorno:
+                print(funcionario)
+    elif acao == SALARIO_MAIS_5000:
+        retorno = empresa.showFuncionarios(SALARIO_MAIS_5000)
+        if retorno == False:
+            print("Erro")
+        else:
+            for funcionario in retorno:
+                print(funcionario)
+    elif acao == SALARIO_MENOS_1000:
+        retorno = empresa.showFuncionarios(SALARIO_MENOS_1000)
+        if retorno == False:
+            print("Erro")
+        else:
+            for funcionario in retorno:
+                print(funcionario)
+    elif acao == HOMENS:
+        retorno = empresa.showFuncionarios(HOMENS)
+        if retorno == False:
+            print("Erro")
+        else:
+            for homem in retorno:
+                print(homem)
+    elif acao == HOMEM_SALARIO_MAIS_800:
+        retorno = empresa.showFuncionarios(HOMEM_SALARIO_MAIS_800)
+        if retorno == False:
+            print("Erro")
+        else:
+            for homem in retorno:
+                print(homem)
+    elif acao == FUNCIONARIOS_SALARIO_1000_2000_PB:
+        retorno = empresa.showFuncionarios(FUNCIONARIOS_SALARIO_1000_2000_PB)
+        if retorno == False:
+            print("Erro")
+        else:
+            for funcionario in retorno:
+                print(funcionario)
+    elif acao == FUNCIONARIO_PRIMEIRA_LETRA:
+        letra = input("Digite a 1° letra do nome dos funcionários que deseja filtrar: ")
+        retorno = empresa.showFuncionarios(FUNCIONARIO_PRIMEIRA_LETRA, letra)
+        if retorno == False:
+            print("Erro, nenhum funcionário tem o nome que comece com essa letra")
+        else:
+            for funcionario in retorno:
+                print(funcionario)
+    elif acao == MAIOR_SALARIO:
+        retorno = empresa.showFuncionarios(MAIOR_SALARIO)
+        if retorno == False:
+            print("Erro")
+        else:
+            print(f"O funcionário que ganha o maior salário é:")
+            print(retorno)
+    elif acao == MENOR_SALARIO:
+        retorno = empresa.showFuncionarios(MENOR_SALARIO)
+        if retorno == False:
+            print("Erro")
+        else:
+            print(f"O funcionário que ganha o menor salário é:")
+            print(retorno)
+    elif acao == HOMEM_MAIS_VELHO:
+        retorno = empresa.showFuncionarios(HOMEM_MAIS_VELHO)
+        if retorno == False:
+            print("Erro")
+        else:
+            print("O homem mais velho é:")
+            print(retorno)
+    elif acao == HOMEM_MAIS_NOVO:
+        retorno = empresa.showFuncionarios(HOMEM_MAIS_NOVO)
+        if retorno == False:
+            print("Erro")
+        else:
+            print("O homem mais novo é:")
+            print(retorno)
+    elif acao == CADEIRANTES:
+        retorno = empresa.showFuncionarios(CADEIRANTES)
+        if len(retorno) == 0:
+            print("Não tem registro de funcionários cadeirantes no sistema")
+        else:
+            for cadeirante in retorno:
+                print(cadeirante)
+    elif acao == APOSENTARAO:
+        retorno = empresa.showFuncionarios(APOSENTARAO)
+        if len(retorno) > 0:
+            for funcionario in retorno:
+                print(funcionario)
+        else:
+            print("ninguém se aposentará nos próximos 10 anos")
+    else:
+        if acao == 0:
+            break
+        else:
+            print("Opção digitada não existe!")
 print("Programa encerrado")
