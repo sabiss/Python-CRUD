@@ -27,9 +27,11 @@ menu = """
 """
 acao = None
 CADASTRAR_NOVO_FUNCIONARIO, EXCLUIR_FUNCIONARIO, ALTERAR_FUNCIONARIO, PESQUISAR_FUNCIONARIO, LISTAR_TODOS_OS_FUNCIONARIOS, LISTAR_FUNCIONARIOS_POR_CIDADE, LISTAR_FUNCIONARIOS_POR_ESTADO,SALARIO_MAIS_5000, SALARIO_MENOS_1000, HOMENS, HOMEM_SALARIO_MAIS_800, FUNCIONARIOS_SALARIO_1000_2000_PB, FUNCIONARIO_PRIMEIRA_LETRA, MAIOR_SALARIO, MENOR_SALARIO, HOMEM_MAIS_VELHO, HOMEM_MAIS_NOVO, CADEIRANTES, APOSENTARAO, FORCA, SAIR = 1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,0
+empresa = Empresa()
 while(acao != 0):
     print(menu)
     acao = int(input("\nDigite sua ação: "))
+
     if acao == CADASTRAR_NOVO_FUNCIONARIO:
         print("\n========== CADASTRAMENTO ==========\n")
         nome = input("Digite o nome do funcionário: ")
@@ -46,7 +48,6 @@ while(acao != 0):
 
         endereco = Endereco(rua, bairro, cidade, estado)
         funcionario = Funcionario(nome, matricula, endereco, salario,sexo, cpf, cadeirante, idade)
-        empresa = Empresa()
         
         retorno = empresa.addFuncionario(funcionario)
         if retorno == True:
@@ -55,7 +56,7 @@ while(acao != 0):
             print("Erro")
 
     elif acao == EXCLUIR_FUNCIONARIO:
-        dado = input("\nDigite a matrícula ou CPF do funcionário a ser excluído")
+        dado = input("\nDigite a matrícula ou CPF do funcionário a ser excluído: ")
         retorno = empresa.dellFuncionario(dado)
         if retorno == True:
             print("Funcionário excluído com sucesso!")
