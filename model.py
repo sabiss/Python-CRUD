@@ -187,7 +187,7 @@ class Funcionario:
         self.sexo = sexo.upper()
         self.cpf =cpf
         self.cadeirante = cadeirante.upper()
-        self.idade = idade
+        self.idade = int(idade)
     def __str__(self):
         return f"========= DADOS =========\nNome: {self.nome}\nMatrícula: {self.matricula}\n{self.endereco}Salário: R${self.salario}\nSexo: {self.sexo}\nCPF: {self.cpf}\nCadeirante: {self.cadeirante}\n===================\n"
 #======================== FORCA ========================
