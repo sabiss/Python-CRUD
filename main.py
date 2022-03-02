@@ -1,3 +1,4 @@
+#GRUPO: Sabrina, Yanka, Jamilly, Ana Paula e Lucas Cauan
 from model import *
 
 
@@ -22,7 +23,7 @@ menu = """
 18 ....................... Mostrar o Funcionário mais novo (O homem mais novo)
 19 ....................... Listar todos os Funcionário cadeirantes
 20 ....................... Listar todos os Funcionários que irá se aposentar nos próximos anos
-21........................ Forca
+21........................ Forca (BETA)
 0.......................... Sair
 """
 acao = None
@@ -261,8 +262,44 @@ while(acao != 0):
                 print(funcionario)
         else:
             print("ninguém se aposentará nos próximos 10 anos")
+    #tentamos fazer o jogo da forca mas não ficou 100%        
+    elif acao == FORCA:
+        nome = input("Digite o nome do jogador(a): ")
+        jogador = Jogador(nome)
+        moderador = Moderador(jogador)
+        palavra = moderador.sortearPalavra()
+        palavraOcultada = moderador.ocultarPalavra(palavra)
+        print(palavraOcultada)
+
+        rodadas = 0
+
+        print(f"\n{jogador.nome} você tem {jogador.tentativas} tentativas")
+        ultimaVerificacao = None
+        while(jogador.tentativas > 0):
+            letra = input("Digite uma letra para tentar: ")
+            if rodadas == 0:
+                verif = moderador.verificarAcerto(palavra, palavraOcultada, letra)
+                if(type(verif) != bool):
+                    ultimaVerificacao = verif
+                else:
+                    verif = ultimaVerificacao
+                print(verif)
+                rodadas += 1
+            else:
+                verif = moderador.verificarAcerto(palavra, ultimaVerificacao, letra)
+                if(type(verif) == bool):
+                    if verif == False:
+                        moderador.diminuirTentativas()
+                        print(f"Você errou! Restam {jogador.tentativas} tentativas")
+                        verif = ultimaVerificacao
+                else:
+                    print(verif)
+                    ultimaVerificacao = verif
+                    if(moderador.verificarAcerto(palavra, ultimaVerificacao, letra) == True):
+                        print("Parabéns! Você Ganhou!")
+                        jogador.tentativas = 0
     else:
-        if acao == 0:
+        if acao == 0:#so pra da certo no else
             break
         else:
             print("Opção digitada não existe!")
