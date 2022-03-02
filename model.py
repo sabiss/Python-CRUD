@@ -1,3 +1,4 @@
+#GRUPO: Sabrina, Yanka, Jamilly, Ana Paula e Lucas Cauan
 #===================== CRUD =====================
 class Empresa:
     def __init__(self):
@@ -191,51 +192,47 @@ class Funcionario:
     def __str__(self):
         return f"========= DADOS =========\nNome: {self.nome}\nMatrícula: {self.matricula}\n{self.endereco}Salário: R${self.salario}\nSexo: {self.sexo}\nCPF: {self.cpf}\nCadeirante: {self.cadeirante}\n===================\n"
 #======================== FORCA ========================
-palavraOculta = "";
-palavraComLetraRevelada = "";
-contador = 0;
+
+#tentamos fazer mas não conseguimos deixar 100%
 class Jogador:
-    def __init__(self, nome, tentativas = 4):
+    def __init__(self, nome):
         self.nome = nome
-        self.tentativas = tentativas
-class Palavra:
-    def __init__(self, palavra):
-        self.palavra = palavra.upper()
-        self.quantidadeLetras = len(palavra)
+        self.tentativas = 4
 
-    def ocultarPalavra(self):#transforma as letras em underlines
-        palavraOculta = ""
-        for letra in range(self.quantidadeLetras):
-            palavraOculta += "_ "#substitui as letras por underlines
-        palavraOculta.lstrip()#tira o ultimo space desnecessário
-        return palavraOculta#retorna a palavra oculta
-    
-    
 class Moderador:
-    def __init__(self, palavra, jogador):
-        self.palavra = palavra
+    def __init__(self, jogador):
         self.jogador = jogador
+        self.palavra = ["FONE", "BOLA", "NAVIO", "VASO", "PORTA", "ESCOLA", "PERNA"]
 
-    def verificarAcerto(self, letraTeste):
-        letraTeste = letraTeste.upper()
-        if self.jogador.tentativas > 0 and self.jogador.tentativas <= 4:#verifica se tem tentativas
-            letraResultado = self.palavra.palavra.find(letraTeste)#procura a letra
-            if letraResultado != -1:#tem a letra
-               if contador == 0:#nenhuma letra foi revelada ainda
-                   palavraOcultada = self.palavra.ocultarPalavra()#pega a palavra ocultada
-                   palavraOcultada = palavraOcultada.replace(" ", "")#tirar os espaços
-                   listaPalavraOcultada = list(palavraOcultada)#transforma numa lista
-                   listaPalavraOcultada[letraResultado] = letraTeste#substitui o underline pela letra encontrada
-                   palavraComLetraRevelada = ' '.join(map(str, listaPalavraOcultada))#transforma em string denovo
-                   contador+=1
-                   return palavraComLetraRevelada#retorno a string espaçada e com letra revelada
-               else:#já há uma letra revelada
-                   palavraComLetraRevelada = list(palavraComLetraRevelada)#transforma numa lista
-                   palavraComLetraRevelada[letraResultado] = letraTeste#revela a nova letra
-                   palavraComLetraRevelada = ' '.join(map(str, palavraComLetraRevelada))#transforma em string com espços
-                   return palavraComLetraRevelada
-            else:
-                self.jogador.tentativas -= 1#não achou a letra e diminui uma tentativa
-                return False
-        else:#não tem mais tentativas
-            return False
+    def sortearPalavra(self):
+        import random
+        num = random.randint(1,6)
+        return self.palavra[num]
+
+    def ocultarPalavra(self, palavra):
+        palavraOculta = []
+        for letra in range(len(palavra)):
+            palavraOculta.append("_")
+        return palavraOculta
+
+    def verificarAcerto(self, palavra, palavraOculta, letra):
+        letra = letra.upper()
+        palavra = palavra.upper()
+        listaLetras = list(palavra)
+        palavraOculta = list(palavraOculta)
+        retorno = False;
+        if "_" in palavraOculta:
+            for caracter in listaLetras:
+                if caracter == letra:
+                    index = palavra.find(letra)
+                    palavraOculta[index] = letra
+                    retorno = palavraOculta
+            return retorno
+        else:
+            return True
+
+    def diminuirTentativas(self):
+        self.jogador.tentativas -= 1
+            
+
+        
