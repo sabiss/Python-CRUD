@@ -1,4 +1,3 @@
-#GRUPO: Sabrina, Yanka, Jamilly, Ana Paula e Lucas Cauan
 #===================== CRUD =====================
 class Empresa:
     def __init__(self):
@@ -152,7 +151,7 @@ class Empresa:
                     if funcionario.cadeirante == "SIM":
                         lista_funcionarios_cadeirantes.append(funcionario)
                 return lista_funcionarios_cadeirantes
-            elif opcao == APOSENTARAO:# irão se aposentar nos prócimos 10 anos *nos próximos anos todo mundo vai né Thadeu kkkkkkk*
+            elif opcao == APOSENTARAO:# irão se aposentar nos prócimos 10 anos
                 #mulher: 61 anos
                 #homem: 65 anos
                 lista_irao_aposentar = []#retorna a lista com os funcionários que irão aposentar OU uma lista vazia

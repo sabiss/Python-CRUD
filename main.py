@@ -1,4 +1,3 @@
-#GRUPO: Sabrina, Yanka, Jamilly, Ana Paula e Lucas Cauan
 from model import *
 
 
